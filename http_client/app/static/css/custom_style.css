@@ -1,0 +1,13 @@
+
+.institute-images{
+    width: 180px;
+    height: 230px;
+    object-fit: contain;
+}
+
+hr{
+    border:solid 1px black;
+    width: 50%;
+    background-color: black;
+    height: 1px;
+}

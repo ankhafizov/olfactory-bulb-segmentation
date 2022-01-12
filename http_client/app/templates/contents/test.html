@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Test</h2>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <div class="custom-file w-50">
+                    <input type="file" class="custom-file-input" name="image" id="image">
+                    <label class="custom-file-label" for="image">Select image..</label>
+                </div>
+
+            </div>
+
+            <p></p>
+
+            <div class="form-check d-flex justify-content-center">
+                <label class="form-check-label" name="people">
+                    <input type="checkbox" class="form-check-input" name="people" value="background">Segmentate background
+                </label>
+            </div>
+            <div class="form-check d-flex justify-content-center">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="people" value="layers">Segmentate layers
+                </label>
+            </div>
+
+            <div class="form-group  d-flex justify-content-center m-2">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+            
+        </div>
+    </form>
+</div>
