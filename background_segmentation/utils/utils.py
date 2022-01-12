@@ -1,17 +1,16 @@
 import matplotlib.pyplot as plt
+from skimage import exposure
+import numpy as np
 
 
 def plot_img_and_mask(img, mask):
-    classes = mask.shape[0] if len(mask.shape) > 2 else 1
-    _, ax = plt.subplots(1, classes + 1)
-    ax[0].set_title('Input image')
-    ax[0].imshow(img)
-    if classes > 1:
-        for i in range(classes):
-            ax[i + 1].set_title(f'Output mask (class {i + 1})')
-            ax[i + 1].imshow(mask[:, :, i])
-    else:
-        ax[1].set_title(f'Output mask')
-        ax[1].imshow(mask)
+    img = np.array(img)
+    img = (img - img.min()) / (img.max() - img.min())
+    img = exposure.equalize_adapthist(img)
+
+    fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+    ax.set_title('Input image')
+    ax.imshow(img, cmap="gray")
+    ax.contour(mask, colors="red")
     plt.xticks([]), plt.yticks([])
     plt.show()

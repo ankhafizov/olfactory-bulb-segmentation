@@ -1,5 +1,6 @@
-weight_path = "aaa"
-filename = 222
-scale = 0.4
-mask_threshold = 0.5
-debug = True
+debug_mode : True
+
+weight_path : "model_binarization.pth"
+scale : 0.5
+mask_threshold : 0.5
+device : "cpu" # gpu or auto

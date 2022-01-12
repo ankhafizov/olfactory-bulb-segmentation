@@ -1,8 +1,5 @@
-import argparse
 import logging
-import os
 
-import numpy as np
 import torch
 import torch.nn.functional as F
 from PIL import Image
@@ -11,6 +8,7 @@ from torchvision import transforms
 from utils.data_loading import BasicDataset
 from unet.unet_model import UNet
 from utils.utils import plot_img_and_mask
+import yaml
 
 def predict_img(net,
                 full_img,
@@ -18,7 +16,9 @@ def predict_img(net,
                 scale_factor=1,
                 out_threshold=0.5):
     net.eval()
-    img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor, is_mask=False))
+
+    img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor))
+
     img = img.unsqueeze(0)
     img = img.to(device=device, dtype=torch.float32)
 
@@ -26,52 +26,64 @@ def predict_img(net,
         output = net(img)
 
         if net.n_classes > 1:
-            probs = F.softmax(output, dim=1)[0]
+            probs = F.softmax(output, dim=1)
         else:
-            probs = torch.sigmoid(output)[0]
+            probs = torch.sigmoid(output)
 
-        tf = transforms.Compose([
-            transforms.ToPILImage(),
-            transforms.Resize((full_img.size[1], full_img.size[0])),
-            transforms.ToTensor()
-        ])
+        probs = probs.squeeze(0)
 
-        full_mask = tf(probs.cpu()).squeeze()
+        tf = transforms.Compose(
+            [
+                transforms.ToPILImage(),
+                transforms.Resize(full_img.size[1]),
+                transforms.ToTensor()
+            ]
+        )
 
-    if net.n_classes == 1:
-        return (full_mask > out_threshold).numpy()
-    else:
-        return F.one_hot(full_mask.argmax(dim=0), net.n_classes).permute(2, 0, 1).numpy()
+        probs = tf(probs.cpu())
+        full_mask = probs.squeeze().cpu().numpy()
+
+    return full_mask > out_threshold
 
 
 def load_model(weight_path, device):
-    net = UNet(n_channels=1, n_classes=2)
+    net = UNet(n_channels=1, n_classes=1)
     net.to(device=device)
     net.load_state_dict(torch.load(weight_path, map_location=device))
     return net
 
 
+def get_device_auto():
+    return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+
+def predict(img, configs):
+    device = get_device_auto() if configs["device"] == "auto" else configs["device"]
+    net = load_model(configs["weight_path"], device=device)
+    mask = predict_img(net=net,
+                       full_img=img,
+                       scale_factor=configs["scale"],
+                       out_threshold=configs["mask_threshold"],
+                       device=device)
+    return mask
+
+
+def load_configs(pth="configs\configs.yml"):
+    with open(pth, "r") as stream:
+        configs = yaml.safe_load(stream)
+    return configs
+
+
 if __name__ == '__main__':
-    weight_path = "model_binarization.pth"
-    filename = "raw_1.tif"
-    scale = 0.5
-    mask_threshold = 0.5
-    debug = True
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    logging.info(f'Using device {device}')
+    configs = load_configs()
 
-    logging.info(f'Loading model weights {weight_path}')
-    net = load_model(weight_path, device=device)
-    logging.info('Model loaded!')
+    if configs["debug_mode"]:
+        filename = "raw_1.tif"
+        img = Image.open(filename)
 
-    # logging.info(f'\nPredicting image {filename} ...')
-    # img = Image.open(filename)
-    # mask = predict_img(net=net,
-    #                    full_img=img,
-    #                    scale_factor=scale,
-    #                    out_threshold=mask_threshold,
-    #                    device=device)
+    
+    mask = predict(img, configs)
 
-    # if debug:
-    #     plot_img_and_mask(img, mask)
+    if configs["debug_mode"]:
+        plot_img_and_mask(img, mask)
