@@ -1,0 +1,5 @@
+weight_path = "aaa"
+filename = 222
+scale = 0.4
+mask_threshold = 0.5
+debug = True
