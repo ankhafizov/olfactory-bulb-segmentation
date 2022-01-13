@@ -1,0 +1,8 @@
+version: "3.1"
+services:
+  sample-segmentation:
+    build: .
+    restart: always
+    network_mode: "host"
+    environment:
+      debug_mode: 0

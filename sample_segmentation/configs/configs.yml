@@ -1,4 +1,4 @@
-debug_mode : True
+debug_mode : $debug_mode
 
 weight_path : "../CNN_weights/sample_segmentation.pth"
 scale : 0.5
