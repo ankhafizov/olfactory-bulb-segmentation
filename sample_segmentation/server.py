@@ -1,10 +1,11 @@
-import os
-from flask import Flask, redirect, request
+from flask import Flask, send_file, request
+import logging
 
 from predict import *
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+import io
+import requests as request_http
 
 
 HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
@@ -15,6 +16,14 @@ def decode_image_file_to_Image(image_file):
     return Image.fromarray(img_np)
 
 
+def encode_Image_to_byte_stream(image):
+    image = Image.fromarray(image)
+    frame_in_bytes = io.BytesIO()
+    image.save(frame_in_bytes, format = "PNG")
+    frame_in_bytes.seek(0)
+    return frame_in_bytes
+
+
 def flask_app(configs):
     app = Flask(__name__)
 
@@ -22,17 +31,19 @@ def flask_app(configs):
     def start():
         image = request.files['image']
         image = decode_image_file_to_Image(image)
+        logging.info("recieved image")
         mask = predict(image, configs)
 
-        plt.imshow(mask)
-        plt.show()
+        mask = encode_Image_to_byte_stream(mask)
 
-        print(image)
-        return redirect(request.url, 200)
+        logging.info("posting mask")
+        return send_file(mask, as_attachment=False,
+                         attachment_filename='mask.png',
+                         mimetype='image/png')
 
     return app
 
 if __name__ == '__main__':
     configs = load_configs()
     app = flask_app(configs)
-    app.run(port=configs["port"], host=configs["host"])
+    app.run(debug=configs["debug_mode"], port=configs["port"], host=configs["host"])
