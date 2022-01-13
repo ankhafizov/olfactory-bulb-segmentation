@@ -8,12 +8,8 @@ def upload_file():
         if request.files:
 
             image = request.files["image"]
+            request_http.post("http://127.0.0.1:5001/upload-raw-image", files={"image" : image})
 
-            image.save(image.filename)
-
-            people = request.form.getlist('people')
-            print(people)
-
-            return redirect(request.url)
+            return redirect(request.url, 200)
     
     return render_template("main.html")
