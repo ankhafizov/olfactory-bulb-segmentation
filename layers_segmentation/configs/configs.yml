@@ -1,0 +1,6 @@
+debug_mode : True
+
+weight_path : "layer_segmentation.pth"
+scale : 0.5
+mask_threshold : 0.5
+device : "cpu" # gpu or auto
