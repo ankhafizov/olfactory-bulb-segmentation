@@ -9,6 +9,11 @@ from unet.unet_model import UNet
 from utils.utils import plot_img_and_mask
 import yaml
 
+
+N_CHANNELS = 1
+N_CLASSES = 6
+
+
 def predict_img(net,
                 full_img,
                 device,
@@ -31,7 +36,7 @@ def predict_img(net,
 
 
 def load_model(weight_path, device):
-    net = UNet(n_channels=1, n_classes=6)
+    net = UNet(n_channels=N_CHANNELS, n_classes=N_CLASSES)
     net.to(device=device)
     net.load_state_dict(torch.load(weight_path, map_location=device))
     return net
