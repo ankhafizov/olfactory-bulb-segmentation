@@ -7,5 +7,6 @@ RUN apt-get update &&\
 
 COPY . /usr/src/sample_segmentation
 WORKDIR /usr/src/sample_segmentation
+RUN ls
 
 CMD [ "python", "predict.py"]

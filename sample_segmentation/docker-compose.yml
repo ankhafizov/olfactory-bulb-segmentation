@@ -6,3 +6,6 @@ services:
     network_mode: "host"
     environment:
       debug_mode: 0
+    volumes:
+      - ../CNN_weights:/usr/src/CNN_weights
+
