@@ -73,7 +73,7 @@ def predict(img, configs):
     return mask
 
 
-def load_configs(pth="./configs/configs.yml"):
+def load_configs(pth="sample_segmentation/configs/configs.yml"):
     with open(pth, "r") as stream:
         configs = yaml.safe_load(stream)
     return configs
@@ -88,7 +88,6 @@ if __name__ == '__main__':
         filename = "raw_1.tif"
         img = Image.open(filename)
 
-    
     mask = predict(img, configs)
 
     if configs["debug_mode"]:
