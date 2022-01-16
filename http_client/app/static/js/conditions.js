@@ -4,7 +4,7 @@ var FILE_SELECTED = false;
 $( "#submit" ).click(function() {
     var checked = $("#inputForm input:checked").length > 0;
 
-    if(!FILE_SELECTED && !checked) { // returns true if the string is not empty
+    if(!FILE_SELECTED && !checked) {
         alert("Please select image file and check at least one option");
         return false;
     }
