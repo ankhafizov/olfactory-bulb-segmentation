@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+  sample-segmentation:
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      debug_mode: 0
+    volumes:
+      - ../CNN_weights:/usr/src/CNN_weights
+
