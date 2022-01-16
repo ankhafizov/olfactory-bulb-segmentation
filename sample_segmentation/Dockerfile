@@ -4,9 +4,11 @@ COPY requirements.txt .
 RUN apt-get update &&\
     /usr/local/bin/python -m pip install --upgrade pip &&\
     pip install -r requirements.txt
+RUN apt-get update &&\
+    apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY . /usr/src/sample_segmentation
 WORKDIR /usr/src/sample_segmentation
 RUN ls
 
-CMD [ "python", "predict.py"]
+CMD [ "python", "server.py"]

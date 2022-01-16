@@ -73,7 +73,7 @@ def predict(img, configs):
     return mask
 
 
-def load_configs(pth="sample_segmentation/configs/configs.yml"):
+def load_configs(pth="configs/configs.yml"):
     with open(pth, "r") as stream:
         configs = yaml.safe_load(stream)
     return configs
