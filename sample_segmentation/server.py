@@ -5,7 +5,6 @@ from predict import *
 import numpy as np
 import cv2
 import io
-import requests as request_http
 
 
 HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
@@ -29,8 +28,8 @@ def flask_app(configs):
 
     @app.route('/upload-raw-image', methods=['POST'])
     def start():
-        image = request.files['image']
-        image = decode_image_file_to_Image(image)
+        image_file = request.files['image']
+        image = decode_image_file_to_Image(image_file)
         logging.info("recieved image")
         mask = predict(image, configs)
 
