@@ -1,12 +1,13 @@
 <div class="container">
     <h2>Test</h2>
 
-    <form action="/" method="POST" enctype="multipart/form-data">
+    <form action="/" method="POST" id="inputForm" enctype="multipart/form-data">
         <div class="form-group">
             <div class="d-flex justify-content-center">
                 <div class="custom-file w-50">
-                    <input type="file" class="custom-file-input" name="image" id="image">
-                    <label class="custom-file-label" for="image">Select image..</label>
+                    <input type="file" class="custom-file-input" name="image"
+                        accept="image/svg, image/tif, image/tiff, image/jpg, image/png, image/jpeg">
+                    <label class="custom-file-label" for="image" id="fileInputLabel">Select image..</label>
                 </div>
 
             </div>
@@ -15,14 +16,13 @@
 
             <div class="form-check d-flex justify-content-center">
                 <label class="form-check-label" name="out-info">
-                    <input type="checkbox" class="form-check-input" name="out-info"
-                        value="background">Segmentate background
+                    <input type="checkbox" class="form-check-input" name="out-info" value="background">Segmentate
+                    background
                 </label>
             </div>
             <div class="form-check d-flex justify-content-center">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" name="out-info"
-                        value="layers">Segmentate layers
+                    <input type="checkbox" class="form-check-input" name="out-info" value="layers">Segmentate layers
                 </label>
             </div>
 
