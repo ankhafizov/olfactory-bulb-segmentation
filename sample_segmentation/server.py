@@ -13,7 +13,7 @@ def decode_image_file_to_Image(image_file):
     return Image.fromarray(img_np)
 
 
-def encode_Image_to_byte_stream(image):
+def encode_prediction_to_byte_stream(image):
     image = Image.fromarray(image)
     frame_in_bytes = io.BytesIO()
     image.save(frame_in_bytes, format = "PNG")
@@ -31,7 +31,7 @@ def flask_app(configs):
         logging.info("recieved image")
         mask = predict(image, configs)
 
-        mask = encode_Image_to_byte_stream(mask)
+        mask = encode_prediction_to_byte_stream(mask)
 
         logging.info("posting mask")
         return send_file(mask, as_attachment=False,
