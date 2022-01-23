@@ -7,8 +7,6 @@ import cv2
 import io
 
 
-HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
 def decode_image_file_to_Image(image_file):
     nparr = np.frombuffer(image_file.read(), np.uint8)
     img_np = cv2.imdecode(nparr, cv2.IMREAD_UNCHANGED)
