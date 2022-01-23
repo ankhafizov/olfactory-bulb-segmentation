@@ -131,9 +131,6 @@ def upload_file():
                 sample_image = image_orig * sample_mask
                 layer_mask = find_layers(sample_image)
 
-                # postprocessing
-                layer_mask *= sample_mask
-
                 ax.imshow(image_orig, cmap="gray", label="Background")
                 lp = draw_layer_contours(layer_mask, ax, "red")
                 bp = highlight_background(sample_mask, ax, color="Blue")
