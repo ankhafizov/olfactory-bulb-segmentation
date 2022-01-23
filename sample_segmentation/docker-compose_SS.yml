@@ -1,10 +1,11 @@
 version: "3.1"
 services:
   sample-segmentation:
+    container_name: sample_segmentation
+    image: sample_segmentation
+
     build: .
     restart: always
-    ports:
-      - "5000:5000"
+    network_mode: "host"
     volumes:
       - ../CNN_weights:/usr/src/CNN_weights
-

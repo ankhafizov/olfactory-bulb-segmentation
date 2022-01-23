@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  layer-segmentation:
+    container_name: layers_segmentation
+    image: layers_segmentation
+
+    build: .
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ../CNN_weights:/usr/src/CNN_weights
