@@ -1,11 +1,9 @@
 version: "3.1"
 services:
-  sample-segmentation:
-    container_name: sample_segmentation
-    image: sample_segmentation
+  http_client:
+    container_name: http_client
+    image: http_client
 
     build: .
     restart: always
     network_mode: "host"
-    volumes:
-      - ../CNN_weights:/usr/src/CNN_weights
