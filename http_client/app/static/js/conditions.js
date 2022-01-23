@@ -2,7 +2,7 @@ var FILE_SELECTED = false;
 
 
 $("#submit").click(function () {
-    var anything_checked = $("#inputForm input:anything_checked").length > 0;
+    var anything_checked = $("#inputForm input:checked").length > 0;
 
     if (!FILE_SELECTED && !anything_checked) {
         alert("Please select image file and check at least one option");
