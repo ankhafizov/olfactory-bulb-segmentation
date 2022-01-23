@@ -1,4 +1,5 @@
 import logging
+import numpy as np
 
 import torch
 import torch.nn.functional as F
@@ -50,7 +51,7 @@ def predict_img(net,
         probs = tf(probs.cpu())
         full_mask = probs.squeeze().cpu().numpy()
 
-    return full_mask > out_threshold
+    return (full_mask > out_threshold).astype(np.uint8)
 
 
 def load_model(weight_path, device):
