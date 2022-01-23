@@ -69,7 +69,7 @@ def highlight_background(mask, ax, color="Red", alpha=ALPHA_BACKGROUND):
     ax.imshow(im, alpha=alpha, cmap=color+"s")
     ax.plot(0, 0, "-", c=color, label="Background")
 
-    background_patch = mpatches.Patch(color="Blue", label="Background")
+    background_patch = mpatches.Patch(color=color, label="Background")
     return background_patch
 
 
