@@ -3,6 +3,7 @@ import logging
 import torch
 from torchvision import transforms
 import matplotlib.pyplot as plt
+import numpy as np
 
 from cnn_model.unet_model import UNet
 import yaml
@@ -32,8 +33,7 @@ def preprocess(img, scale):
 def predict_img(net,
                 full_img,
                 device,
-                scale_factor=1,
-                out_threshold=0.5):
+                scale_factor=1):
     net.eval()
 
     # img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor))
@@ -47,7 +47,10 @@ def predict_img(net,
         _, _mask = torch.max(output, dim=1)
         masks = _mask.permute(1,2,0).detach().cpu()[:,:,0]
 
-    return masks.numpy()
+    masks = masks.numpy()
+    masks = masks.astype(np.float32)
+    masks = cv2.resize(masks, full_img.shape)
+    return masks.astype(np.uint8)
 
 
 def load_model(weight_path, device):
@@ -68,7 +71,6 @@ def predict(img, configs):
     mask = predict_img(net=net,
                        full_img=img,
                        scale_factor=configs["scale"],
-                       out_threshold=configs["mask_threshold"],
                        device=device)
     return mask
 
@@ -92,8 +94,8 @@ if __name__ == '__main__':
 
     
     masks = predict(img, configs)
-    import matplotlib.pyplot as plt
     if configs["debug_mode"]:
-        plt.imshow(masks, cmap='gray')
+        plt.imshow(img, cmap='gray')
+        plt.contour(masks, colors=["red"])
         # plt.imsave("mask.png", masks)
         plt.show()
