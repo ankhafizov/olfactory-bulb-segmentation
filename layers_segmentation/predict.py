@@ -2,6 +2,7 @@ import logging
 
 import torch
 from torchvision import transforms
+import matplotlib.pyplot as plt
 
 from cnn_model.unet_model import UNet
 import yaml
