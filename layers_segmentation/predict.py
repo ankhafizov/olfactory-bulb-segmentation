@@ -1,18 +1,30 @@
 import logging
 
 import torch
-import torch.nn.functional as F
-from PIL import Image
+from torchvision import transforms
 
-from utils.data_loading import BasicDataset
 from cnn_model.unet_model import UNet
-from utils.utils import plot_img_and_mask
 import yaml
+import cv2
 
 
 N_CHANNELS = 1
 N_CLASSES = 6
 
+def preprocess(img, scale):
+    width = int(img.shape[1] * scale)
+    height = int(img.shape[0] * scale)
+    dim = (width, height)
+
+    img = cv2.resize(img, dim)
+
+    tfms = transforms.Compose([
+        transforms.ToTensor()   
+    ])
+
+    img = tfms(img.copy())[None]  
+
+    return img
 
 def predict_img(net,
                 full_img,
@@ -21,18 +33,18 @@ def predict_img(net,
                 out_threshold=0.5):
     net.eval()
 
-    img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor))
+    # img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor))
+    
+    img = preprocess(full_img, scale_factor)
 
-    img = img.unsqueeze(0)
     img = img.to(device=device, dtype=torch.float32)
 
     with torch.no_grad():
         output = net(img)
-        probs = F.softmax(output, dim=1)
-        probs = probs.squeeze(0)
-        masks = probs.cpu().numpy()
+        _, _mask = torch.max(output, dim=1)
+        masks = _mask.permute(1,2,0).detach().cpu()[:,:,0]
 
-    return masks > out_threshold
+    return masks.numpy()
 
 
 def load_model(weight_path, device):
@@ -57,7 +69,7 @@ def predict(img, configs):
     return mask
 
 
-def load_configs(pth="configs\configs.yml"):
+def load_configs(pth="configs/configs.yml"):
     with open(pth, "r") as stream:
         configs = yaml.safe_load(stream)
     return configs
@@ -68,15 +80,14 @@ if __name__ == '__main__':
     configs = load_configs()
 
     if configs["debug_mode"]:
-        filename = "raw_1.tif"
-        img = Image.open(filename)
+        filename = "test/raw_1.tif"
+        # img = Image.open(filename)
+        img = cv2.imread("test/raw_1.tif", -1)
 
     
     masks = predict(img, configs)
-
     import matplotlib.pyplot as plt
     if configs["debug_mode"]:
-        for mask in masks:
-            print(mask.shape, mask.sum())
-            plt.imshow(mask)
-            plt.show()
+        plt.imshow(masks, cmap='gray')
+        # plt.imsave("mask.png", masks)
+        plt.show()
