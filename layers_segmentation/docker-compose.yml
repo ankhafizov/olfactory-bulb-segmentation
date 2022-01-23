@@ -1,8 +1,8 @@
 version: "3.1"
 services:
-  sample-segmentation:
-    container_name: sample_segmentation
-    image: sample_segmentation
+  layer-segmentation:
+    container_name: layers_segmentation
+    image: layers_segmentation
 
     build: .
     restart: always
