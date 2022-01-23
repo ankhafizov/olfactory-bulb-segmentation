@@ -9,7 +9,9 @@ from utils.data_loading import BasicDataset
 from cnn_model.unet_model import UNet
 from utils.utils import plot_img_and_mask
 import yaml
+from os.path import dirname, realpath, join
 
+ROOT_REPOSITORY_PATH = dirname(dirname(realpath(__file__)))
 
 N_CHANNELS = 1
 N_CLASSES = 1
@@ -64,7 +66,8 @@ def get_device_auto():
 
 def predict(img, configs):
     device = get_device_auto() if configs["device"] == "auto" else configs["device"]
-    net = load_model(configs["weight_path"], device=device)
+    weight_path = join(ROOT_REPOSITORY_PATH, configs["weight_path"])
+    net = load_model(weight_path, device=device)
     mask = predict_img(net=net,
                        full_img=img,
                        scale_factor=configs["scale"],
@@ -73,7 +76,8 @@ def predict(img, configs):
     return mask
 
 
-def load_configs(pth="configs/configs.yml"):
+def load_configs(pth=join(ROOT_REPOSITORY_PATH,
+                          "sample_segmentation/configs/configs.yml")):
     with open(pth, "r") as stream:
         configs = yaml.safe_load(stream)
     return configs
@@ -85,7 +89,8 @@ if __name__ == '__main__':
 
     if configs["debug_mode"]:
         logging.info("in debug mode working with raw_1.tif")
-        filename = "raw_1.tif"
+        filename = join(ROOT_REPOSITORY_PATH,
+                        "sample_segmentation/test/raw_1.tif")
         img = Image.open(filename)
 
     mask = predict(img, configs)
