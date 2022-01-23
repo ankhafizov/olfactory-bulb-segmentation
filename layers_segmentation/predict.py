@@ -86,16 +86,14 @@ if __name__ == '__main__':
 
     configs = load_configs()
 
-    if configs["debug_mode"]:
-        filename = join(ROOT_REPOSITORY_PATH,
-                        "layers_segmentation/test/raw_1.tif")
-        # img = Image.open(filename)
-        img = cv2.imread(filename, -1)
+    filename = join(ROOT_REPOSITORY_PATH,
+                    "layers_segmentation/test/raw_1.tif")
+    # img = Image.open(filename)
+    img = cv2.imread(filename, -1)
 
-    
+
     masks = predict(img, configs)
-    if configs["debug_mode"]:
-        plt.imshow(img, cmap='gray')
-        plt.contour(masks, colors=["red"])
-        # plt.imsave("mask.png", masks)
-        plt.show()
+    plt.imshow(img, cmap='gray')
+    plt.contour(masks, colors=["red"])
+    # plt.imsave("mask.png", masks)
+    plt.show()

@@ -88,13 +88,11 @@ if __name__ == '__main__':
 
     configs = load_configs()
 
-    if configs["debug_mode"]:
-        logging.info("in debug mode working with raw_1.tif")
-        filename = join(ROOT_REPOSITORY_PATH,
-                        "sample_segmentation/test/raw_1.tif")
-        img = Image.open(filename)
+    logging.info("in debug mode working with raw_1.tif")
+    filename = join(ROOT_REPOSITORY_PATH,
+                    "sample_segmentation/test/raw_1.tif")
+    img = Image.open(filename)
 
     mask = predict(img, configs)
 
-    if configs["debug_mode"]:
-        plot_img_and_mask(img, mask)
+    plot_img_and_mask(img, mask)
