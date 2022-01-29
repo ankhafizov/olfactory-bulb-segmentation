@@ -1,9 +1,0 @@
-version: "3.1"
-services:
-  http_client:
-    container_name: http_client
-    image: http_client
-
-    build: .
-    restart: always
-    network_mode: "host"
