@@ -1,27 +1,31 @@
 version: "3.1"
 services:
+  http-client:
+    container_name: http_client
+    image: http_client
+    build: ./http_client
+    # restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - LAYER_SEGMENTATOR_HOST=layers-segmentation
+      - BACKGROUND_SEGMENTATOR_HOST=sample-segmentation
+
   sample-segmentation:
     container_name: sample_segmentation
     image: sample_segmentation
     build: ./sample_segmentation
-    restart: always
+    # restart: always
+    volumes:
+      - ./CNN_weights:/usr/src/CNN_weights
     ports:
       - "5001:5001"
-    volumes:
-      - ../CNN_weights:/usr/src/CNN_weights
-  layer-segmentation:
+  layers-segmentation:
     container_name: layers_segmentation
     image: layers_segmentation
     build: ./sample_segmentation
-    restart: always
+    # restart: always
+    volumes:
+      - ./CNN_weights:/usr/src/CNN_weights
     ports:
       - "5002:5002"
-    volumes:
-      - ../CNN_weights:/usr/src/CNN_weights
-  http_client:
-    container_name: http_client
-    image: http_client
-    build: ./http_client
-    restart: always
-    ports:
-      - "5000:5000"
