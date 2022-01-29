@@ -1,4 +1,4 @@
-debug_mode : True
+debug_mode : False
 
 host : 0.0.0.0
 port : 5002

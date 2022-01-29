@@ -5,6 +5,7 @@ from predict import *
 import numpy as np
 import cv2
 import io
+import logging
 
 
 def decode_image_file_to_Image(image_file):
@@ -43,4 +44,6 @@ def flask_app(configs):
 if __name__ == '__main__':
     configs = load_configs()
     app = flask_app(configs)
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
     app.run(debug=configs["debug_mode"], port=configs["port"], host=configs["host"])
