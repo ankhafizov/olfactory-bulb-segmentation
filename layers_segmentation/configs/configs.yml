@@ -1,6 +1,6 @@
 debug_mode : True
 
-host : 127.0.0.1
+host : 0.0.0.0
 port : 5002
 
 weight_path : CNN_weights/layer_segmentation.pth
