@@ -1,18 +1,27 @@
 <div class="container">
     <h2>Gallery</h2>
-    <label>You can download (right-click & save) and use one of these images for testing:</label>
+    <label>You can download (just left-click) and use one of these images for testing:</label>
     <div class="row">
         <div class="col-md-6 col-xs-6 p-1">
-            <img src="{{ url_for('static', filename='img/sample-gallery/1.jpg') }}" class="img-fluid">
+            <a href="{{ url_for('static', filename='img/sample-gallery/tif/raw_9.tif') }}" download>
+                    <img src="{{ url_for('static', filename='img/sample-gallery/jpg/raw_9.jpg') }}" class="img-fluid">
+            </a>
         </div>
         <div class="col-md-6 col-xs-6 p-1">
-            <img src="{{ url_for('static', filename='img/sample-gallery/1.jpg') }}" class="img-fluid">
+            <a href="{{ url_for('static', filename='img/sample-gallery/tif/raw_9.tif') }}" download>
+                    <img src="{{ url_for('static', filename='img/sample-gallery/jpg/raw_150.jpg') }}" class="img-fluid">
+            </a>
         </div>
         <div class="col-md-6 col-xs-6 p-1">
-            <img src="{{ url_for('static', filename='img/sample-gallery/1.jpg') }}" class="img-fluid">
+            <a href="{{ url_for('static', filename='img/sample-gallery/tif/raw_9.tif') }}" download>
+                <img src="{{ url_for('static', filename='img/sample-gallery/jpg/raw_256.jpg') }}" class="img-fluid">
+            </a>
         </div>
+       
         <div class="col-md-6 col-xs-6 p-1">
-            <img src="{{ url_for('static', filename='img/sample-gallery/1.jpg') }}" class="img-fluid">
+            <a href="{{ url_for('static', filename='img/sample-gallery/tif/raw_9.tif') }}" download>
+                    <img src="{{ url_for('static', filename='img/sample-gallery/jpg/raw_296.jpg') }}" class="img-fluid">
+            </a>
         </div>
     </div>
 </div>
