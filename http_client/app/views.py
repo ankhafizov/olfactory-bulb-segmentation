@@ -138,7 +138,8 @@ def upload_file():
 
                 ax.imshow(image_orig, cmap="gray", label="Background")
                 lp = draw_layer_contours(layer_mask, ax, "red")
-                bp = highlight_background(sample_mask, ax, color="Blue")
+                if "background" in requested_out_info:
+                    bp = highlight_background(sample_mask, ax, color="Blue")
 
                 # appending
                 legend_patches += ([bp] + [lp])
