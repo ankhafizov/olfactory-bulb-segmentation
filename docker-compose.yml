@@ -23,7 +23,7 @@ services:
   layers-segmentation:
     container_name: layers_segmentation
     image: layers_segmentation
-    build: ./sample_segmentation
+    build: ./layers_segmentation
     # restart: always
     volumes:
       - ./CNN_weights:/usr/src/CNN_weights
