@@ -7,12 +7,14 @@ import numpy as np
 import cv2
 from PIL import Image
 import matplotlib.patches as mpatches
+from os.path import dirname, realpath
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from skimage import exposure
 
-
-APP_ROOT = "app"
+APP_ROOT = os.path.join(dirname(dirname(realpath(__file__))), "app")
 OUTPUT_SAVE_PATH = f"static/img/output.png"
 ALPHA_BACKGROUND = 0.3
 
