@@ -120,7 +120,6 @@ def upload_file():
     if request.method == "POST":
         fig, ax = plt.subplots(1, 1, figsize=(10, 10), constrained_layout=True)
         ax.axis("off")
-        legend_patches = []
 
         if request.files:
             requested_out_info = request.form.getlist("out-info")
@@ -130,7 +129,7 @@ def upload_file():
 
                 ax.imshow(image_orig, cmap="gray")
                 bp = highlight_background(sample_mask, ax)
-                legend_patches.append(bp)
+                legend_patches = [bp]
             elif "layers" in requested_out_info:
                 image_orig, sample_mask = find_sample(request)
                 sample_image = image_orig * sample_mask
@@ -140,9 +139,9 @@ def upload_file():
                 lp = draw_layer_contours(layer_mask, ax, "red")
                 if "background" in requested_out_info:
                     bp = highlight_background(sample_mask, ax, color="Blue")
-
-                # appending
-                legend_patches += ([bp] + [lp])
+                    legend_patches = [bp, lp]
+                else:
+                    legend_patches = [lp]
 
                 pass
 
