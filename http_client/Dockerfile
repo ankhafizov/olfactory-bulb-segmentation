@@ -11,6 +11,4 @@ COPY . /usr/src/sample_segmentation
 WORKDIR /usr/src/sample_segmentation
 RUN ls
 
-EXPOSE 5000
-
 CMD [ "python", "run.py"]
