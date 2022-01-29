@@ -5,11 +5,11 @@ services:
     image: ankhafizov/http_client:v1.0
     restart: always
     ports:
-      - "5000:5000"
+      - "80:5000"
     environment:
       - LAYER_SEGMENTATOR_HOST=layers-segmentation
       - BACKGROUND_SEGMENTATOR_HOST=sample-segmentation
-      - HOST=ec2-54-160-137-40.compute-1.amazonaws.com
+      - HOST=0.0.0.0
 
   sample-segmentation:
     container_name: sample_segmentation
