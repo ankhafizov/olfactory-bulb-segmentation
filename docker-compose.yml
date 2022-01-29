@@ -10,6 +10,7 @@ services:
     environment:
       - LAYER_SEGMENTATOR_HOST=layers-segmentation
       - BACKGROUND_SEGMENTATOR_HOST=sample-segmentation
+      - HOST=0.0.0.0
 
   sample-segmentation:
     container_name: sample_segmentation
