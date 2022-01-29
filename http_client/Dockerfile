@@ -7,8 +7,8 @@ RUN apt-get update &&\
 RUN apt-get update &&\
     apt-get install ffmpeg libsm6 libxext6  -y
 
-COPY . /usr/src/sample_segmentation
-WORKDIR /usr/src/sample_segmentation
+COPY . /usr/src/http_client
+WORKDIR /usr/src/http_client
 RUN ls
 
 CMD [ "python", "run.py"]
