@@ -20,6 +20,7 @@ services:
       - ./CNN_weights:/usr/src/CNN_weights
     ports:
       - "5001:5001"
+
   layers-segmentation:
     container_name: layers_segmentation
     image: layers_segmentation
