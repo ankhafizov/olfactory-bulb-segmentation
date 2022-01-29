@@ -35,7 +35,7 @@ def flask_app(configs):
 
         logging.info("posting mask")
         return send_file(mask, as_attachment=False,
-                         attachment_filename='mask.png',
+                         download_name='mask.png',
                          mimetype='image/png')
 
     return app
