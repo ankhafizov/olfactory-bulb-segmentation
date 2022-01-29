@@ -17,8 +17,8 @@ APP_ROOT = "app"
 OUTPUT_SAVE_PATH = f"static/img/output.png"
 ALPHA_BACKGROUND = 0.3
 
-BACGROUND_SEGMENTATOR_IP = "127.0.0.1"
-BACGROUND_SEGMENTATOR_HOST = "5001"
+BACKGROUND_SEGMENTATOR_IP = "127.0.0.1"
+BACKGROUND_SEGMENTATOR_HOST = "5001"
 
 LAYER_SEGMENTATOR_IP = "127.0.0.1"
 LAYER_SEGMENTATOR_HOST = "5002"
@@ -87,8 +87,8 @@ def find_sample(flask_request):
     image_orig = enhance_contrast(image_orig)
 
     response = request_server(buffered_image_file,
-                              BACGROUND_SEGMENTATOR_IP,
-                              BACGROUND_SEGMENTATOR_HOST)
+                              BACKGROUND_SEGMENTATOR_IP,
+                              BACKGROUND_SEGMENTATOR_HOST)
 
     logger.info("response find_sample received successfully!")
     image_mask = decode_buf_image_file_to_numpy(response.content, dtype=bool)
