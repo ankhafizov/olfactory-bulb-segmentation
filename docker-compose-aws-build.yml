@@ -1,0 +1,13 @@
+version: "3.1"
+services:
+  http-client:
+    image: ankhafizov/http_client:v1.0
+    build: ./http_client
+
+  sample-segmentation:
+    image: ankhafizov/sample_segmentation:v1.0
+    build: ./sample_segmentation
+
+  layers-segmentation:
+    image: ankhafizov/layers_segmentation:v1.0
+    build: ./layers_segmentation
