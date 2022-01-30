@@ -12,7 +12,7 @@ Disclaimer: may be tmporary not available.
 
 https://ec2-52-73-12-215.compute-1.amazonaws.com/
 
-## Locally, sing Docker
+## Locally, using Docker
 
 Pull this repository and execute:
 
