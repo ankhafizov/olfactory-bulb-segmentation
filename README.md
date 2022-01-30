@@ -7,7 +7,7 @@
 </p>
 </br>
 
-# Purpose
+
 
 The goal of this project is to show the implementation of the paper _Deep Leaning-based segmentation of post-mortem human's olfactory bulb structures in X-ray phase-contrast tomography_.
 
