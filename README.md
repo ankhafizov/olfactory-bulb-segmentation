@@ -14,7 +14,7 @@ https://ec2-52-73-12-215.compute-1.amazonaws.com/
 
 ## Locally, sing Docker
 
-Pull this repository and execute^
+Pull this repository and execute:
 
 ```
 docker-compose up
