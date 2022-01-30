@@ -45,6 +45,7 @@ def flask_app(configs):
 if __name__ == '__main__':
     configs = load_configs()
     app = flask_app(configs)
-    # log = logging.getLogger('werkzeug')
-    # log.disabled = os.environ.get("LOGS_DISABLED")
+    log = logging.getLogger('werkzeug')
+    if "LOGS_DISABLED" in os.environ:
+        log.disabled = os.environ.get("LOGS_DISABLED")
     app.run(debug=configs["debug_mode"], port=configs["port"], host=configs["host"])
