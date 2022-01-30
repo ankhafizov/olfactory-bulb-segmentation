@@ -2,10 +2,10 @@ version: "3.1"
 services:
   http-client:
     container_name: http_client
-    image: ankhafizov/http_client:v1.0
+    image: ankhafizov/http_client:latest
     restart: always
     ports:
-      - "80:5000"
+      - "5000:5000"
     environment:
       - LAYER_SEGMENTATOR_HOST=layers-segmentation
       - BACKGROUND_SEGMENTATOR_HOST=sample-segmentation
@@ -13,18 +13,22 @@ services:
 
   sample-segmentation:
     container_name: sample_segmentation
-    image: ankhafizov/sample_segmentation:v1.0
+    image: ankhafizov/sample_segmentation:latest
     restart: always
     volumes:
       - ./CNN_weights:/usr/src/CNN_weights
-    ports:
-      - "5001:5001"
+    expose:
+      - "5001"
+    environment:
+      - LOGS_DISABLED=False
 
   layers-segmentation:
     container_name: layers_segmentation
-    image: ankhafizov/layers_segmentation:v1.0
+    image: ankhafizov/layers_segmentation:latest
     restart: always
     volumes:
       - ./CNN_weights:/usr/src/CNN_weights
-    ports:
-      - "5002:5002"
+    expose:
+      - "5002"
+    environment:
+      - LOGS_DISABLED=False

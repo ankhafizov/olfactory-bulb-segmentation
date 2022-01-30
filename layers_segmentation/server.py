@@ -7,6 +7,7 @@ import cv2
 import io
 from PIL import Image
 import logging
+import os
 
 
 def decode_image_file_to_numpy(image_file):
@@ -44,6 +45,6 @@ def flask_app(configs):
 if __name__ == '__main__':
     configs = load_configs()
     app = flask_app(configs)
-    log = logging.getLogger('werkzeug')
-    log.disabled = True
+    # log = logging.getLogger('werkzeug')
+    # log.disabled = os.environ.get("LOGS_DISABLED")
     app.run(debug=configs["debug_mode"], port=configs["port"], host=configs["host"])
