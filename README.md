@@ -70,5 +70,6 @@ We hope that this scheme will be helpful if new features should be implemented. 
 - enable CUDA for inference
 - add link to published paper and citation column
 - run flask WSGI as gunicorn
+- redirect internal service error to 400
 
 
