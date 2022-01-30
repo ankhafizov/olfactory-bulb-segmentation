@@ -2,7 +2,7 @@ version: "3.1"
 services:
   http-client:
     container_name: http_client
-    image: ankhafizov/http_client:latest
+    image: ankhafizov/http_client:v1.1
     restart: always
     ports:
       - "5000:5000"
@@ -13,7 +13,7 @@ services:
 
   sample-segmentation:
     container_name: sample_segmentation
-    image: ankhafizov/sample_segmentation:latest
+    image: ankhafizov/sample_segmentation:v1.1
     restart: always
     volumes:
       - ./CNN_weights:/usr/src/CNN_weights
@@ -24,7 +24,7 @@ services:
 
   layers-segmentation:
     container_name: layers_segmentation
-    image: ankhafizov/layers_segmentation:latest
+    image: ankhafizov/layers_segmentation:v1.1
     restart: always
     volumes:
       - ./CNN_weights:/usr/src/CNN_weights
