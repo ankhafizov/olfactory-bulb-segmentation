@@ -17,7 +17,7 @@ The goal of this project is to show the implementation of the paper _Deep Leanin
 
 ## AWS server
 
-Disclaimer: may be tmporary not available.
+Disclaimer: may be temporary not available.
 
 https://ec2-52-73-12-215.compute-1.amazonaws.com/
 
