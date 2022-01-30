@@ -48,7 +48,13 @@ http://0.0.0.0:5000
 
 # Architecture
 
+The app is developed using the microservice approach. Each server is launched in Docker (blue containers on the image below), which are interconnected in one docker-compose file (red one). 
+
 ![web](https://github.com/ankhafizov/olfactory-bulb-segmentation/blob/master/architecture.png?raw=true)
+
+In AWS also Apache 2.4 was utilised as a reverse proxy for port 5000.
+
+We hope that this scheme will be helpful if new features should be implemented. In that case, the corresponding code should be put in the Docker container, and connected to Central Processor (see http_client/app/views.py) afterwards.
 
 # Futher investigations
 
