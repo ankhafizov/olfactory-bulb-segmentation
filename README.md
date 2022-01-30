@@ -2,7 +2,7 @@
 
 The goal of this project is to show the implementation of the paper _Deep Leaning-based segmentation of post-mortem human's olfactory bulb structures in X-ray phase-contrast tomography_.
 
-![web](https://drive.google.com/file/d/18rS9s8HSkvQBTZb9wZNHlY0K-Bygs2TU/view?usp=sharing)
+![web](![alt text](https://github.com/ankhafizov/olfactory-bulb-segmentation/blob/master/image.jpg?raw=true))
 
 # Launch
 
