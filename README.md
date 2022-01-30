@@ -1,3 +1,12 @@
+# Olfactory Bulb Segmentation
+
+<p align="left">
+  <a href="https://ec2-52-73-12-215.compute-1.amazonaws.com/">
+    <img alt="shield_aws" src="https://img.shields.io/badge/AWS-service-yellow">
+  </a>
+</p>
+</br>
+
 # Purpose
 
 The goal of this project is to show the implementation of the paper _Deep Leaning-based segmentation of post-mortem human's olfactory bulb structures in X-ray phase-contrast tomography_.
