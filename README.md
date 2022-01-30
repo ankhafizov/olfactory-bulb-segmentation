@@ -65,7 +65,7 @@ In AWS also Apache 2.4 was utilised as a reverse proxy for port 5000.
 
 We hope that this scheme will be helpful if new features should be implemented. In that case, the corresponding code should be put in the Docker container, and connected to Central Processor (see http_client/app/views.py) afterwards.
 
-# Futher investigations
+# Further investigations
 
 - enable CUDA for inference
 - add link to published paper and citation column
