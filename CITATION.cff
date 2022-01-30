@@ -1,0 +1,12 @@
+cff-version: 1.0.0
+
+title: "Olfactory bulb segmentation"
+version: 1.0
+date-released: 2022-01-30
+url: "https://github.com/ankhafizov/olfactory-bulb-segmentation"
+
+authors:
+- family-names: "Khafizov"
+  given-names: "Anvar"
+- family-names: "Meshkov"
+  given-names: "Alexandr"
