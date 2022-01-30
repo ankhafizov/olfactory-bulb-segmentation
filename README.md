@@ -48,7 +48,7 @@ http://0.0.0.0:5000
 
 # Architecture
 
-
+![web](https://github.com/ankhafizov/olfactory-bulb-segmentation/blob/master/architecture.png?raw=true)
 
 # Futher investigations
 
