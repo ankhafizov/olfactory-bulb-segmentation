@@ -1,2 +1,4 @@
 .vscode
 *pyc
+.idea/
+http_client/app/static/img/output.png
