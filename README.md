@@ -40,16 +40,16 @@ Install python (3.8.12 is recomended) neccessary dependencies:
 pip install -r http_client/requirements.txt -r sample_segmentation/requirements.txt -r layers_segmentation/requirements.txt
 ```
 
-than open 3 console tab and execute in each tap separately
+than open 3 console tab and execute in each tab separately
 
 ```
-python http_client run.py
+python http_client/run.py
 ```
 ```
-layers_segmentation server.py
+python layers_segmentation/server.py
 ```
 ```
-sample_segmentation server.py
+python sample_segmentation/server.py
 ```
 open:
 
